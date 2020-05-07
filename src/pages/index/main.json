@@ -1,4 +1,6 @@
 {
-    "navigationBarTitleText": "首页"
-  }
-  
+  "navigationBarTitleText": "熊购到家",
+  "navigationStyle": "custom",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark"
+}

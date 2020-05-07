@@ -1,6 +1,6 @@
 # mpvue-demo
 
-> A Mpvue project
+> 练习
 
 ## Build Setup
 

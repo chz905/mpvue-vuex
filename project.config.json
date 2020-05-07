@@ -6,7 +6,7 @@
         "postcss": true,
         "minified": true,
         "newFeature": true,
-        "checkSiteMap":false
+        "checkSiteMap": false
     },
     "miniprogramRoot": "dist/wx/",
     "compileType": "miniprogram",
