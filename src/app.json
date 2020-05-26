@@ -3,7 +3,9 @@
     "pages/index/main",
     "pages/cart/main",
     "pages/my/main",
-    "pages/index_cate/main"
+    "pages/index_cate/main",
+    "pages/login/main",
+    "pages/my_coupon/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

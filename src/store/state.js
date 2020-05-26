@@ -1,4 +1,9 @@
 export default { 
     userInfo:{},
-    postsList:{}
+    postsList:{},
+    openid:'',
+    unionid:'',
+    mid:'',//用户id
+    token: '',
+    systemInfo: '' //设备信息
 }

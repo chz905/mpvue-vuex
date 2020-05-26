@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- <button open-type="getUserInfo" @getuserinfo="getUserInfo">获取用户信息</button>
-    <img :src="userInfo.avatarUrl" mode="widthFix" alt="">-->
+    <img :src="userInfo.avatarUrl" mode="widthFix" alt=""> -->
     <!-- 头部 -->
     <nav class="nav" :style="{ paddingTop: MenuButton.top + 'px',height: MenuButton.height + 'px'}">
       <div class="adress" @tap="map()">
@@ -10,8 +10,10 @@
         <i class="iconfont icon-xia"></i>
       </div>
       <div class="search">
-        <i class="iconfont icon-Group-"></i>
-        <span>请输入搜索关键词</span>
+        <a href="../index_cate/main">
+          <i class="iconfont icon-Group-"></i>
+          <span>请输入搜索关键词</span>
+        </a>
       </div>
     </nav>
     <!-- 轮播 -->
@@ -75,11 +77,11 @@
 <script>
 import { mapState } from "vuex";
 import api from "@/api";
-let amapFile = require('@/utils/amap-wx.js')
+let amapFile = require("@/utils/amap-wx.js");
 export default {
   data() {
     return {
-      Amap:null,
+      Amap: null,
       motto: "Hello miniprograme",
       MenuButton: {},
       list: [
@@ -155,20 +157,22 @@ export default {
     };
   },
   beforeMount() {
-    this.Amap = new amapFile.AMapWX({key:'3234d08486f1deaab4a7b80fa38c8b1e'})
-    this.headGetUserInfo();
+    this.Amap = new amapFile.AMapWX({
+      key: "3234d08486f1deaab4a7b80fa38c8b1e"
+    })
     this.$nextTick(() => {
       this.MenuButton = wx.getMenuButtonBoundingClientRect();
-    });
+    })
     wx.getLocation({
-      success:(res) => {
-        let location = res.longitude + ',' + res.latitude
-        this.getRegeo(location)
+      success: res => {
+        let location = res.longitude + "," + res.latitude;
+        this.getRegeo(location);
       },
-      fail:(err) => {
-        console.log(err)
+      fail: err => {
+        console.log(err);
       }
     })
+    this.find()
   },
   onPullDownRefresh() {
     console.log("用户下拉了");
@@ -181,8 +185,7 @@ export default {
   },
   methods: {
     find() {
-      api
-        .readAdvertDetail({
+      api.readAdvertDetail({
           method: "POST",
           data: {
             posCodes: "['UMPA0001']",
@@ -198,19 +201,7 @@ export default {
     //     this.$store.dispatch('postsList', res)
     //   })
     // },
-    headGetUserInfo() {
-      wx.getUserInfo({
-        success: res => {
-          console.log(res.userInfo);
-          this.$store.dispatch("syncUserInfo", res.userInfo);
-        }
-      });
-    },
-    getUserInfo(data) {
-      if (data.mp.detail.rawData) {
-        this.headGetUserInfo();
-      }
-    },
+
     // 左上角地图
     map() {
       wx.chooseLocation({
@@ -224,13 +215,13 @@ export default {
       });
     },
     // 地理逆编码
-    getRegeo(location){
+    getRegeo(location) {
       this.Amap.getRegeo({
-        location:location,
-        success:(res)=>{
-          console.log(res)
+        location: location,
+        success: res => {
+          console.log(res);
         }
-      })
+      });
     }
   },
 
@@ -247,47 +238,48 @@ export default {
   z-index: 999;
   display: flex;
   align-items: center;
-  padding-left: 15px;
-  padding-bottom:10px; 
-  background: #fff
+  padding-left: 30rpx;
+  padding-bottom: 20rpx;
+  background: #fff;
 }
 .adress {
   display: flex;
-  margin-right: 10px;
+  margin-right: 20rpx;
   align-items: center;
 }
 .adress i:nth-child(1) {
-  font-size: 13px;
+  font-size: 26rpx;
 }
 .adress i:nth-child(3) {
-  font-size: 9px;
+  font-size: 18rpx;
 }
 .adress span {
-  font-size: 15px;
-  padding: 0 4px;
+  font-size: 30rpx;
+  padding: 0 8rpx;
   display: block;
   box-sizing: border-box;
 }
-.search {
+.search a {
+  display: block;
   display: flex;
   align-items: center;
-  padding: 8px 30px;
+  padding: 16rpx 60rpx;
   background: #f1f5fa;
-  border-radius: 100px;
-  font-size: 12px;
+  border-radius: 200rpx;
+  font-size: 24rpx;
   color: #999999;
   box-sizing: border-box;
 }
 .search i {
-  font-size: 12px;
+  font-size: 24rpx;
   color: #999999;
-  margin-right: 6px;
+  margin-right: 12rpx;
 }
 .swiper-group {
-  height: 98px;
+  height: 196rpx;
   width: 100%;
   background: #eee;
-  border-radius: 6px;
+  border-radius: 12rpx;
   overflow: hidden;
 }
 .swiper_box {
@@ -297,58 +289,58 @@ export default {
 .cate {
   display: flex;
   flex-wrap: wrap;
-  padding: 10px 0;
+  padding: 20rpx 0;
 }
 .cate li {
   width: 20%;
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 20rpx;
 }
 .cate li p {
-  font-size: 13px;
+  font-size: 26rpx;
 }
 .cate li img {
-  width: 40px;
+  width: 80rpx;
 }
 .activity {
-  padding: 10px 0;
+  padding: 20rpx 0;
 }
 .activity h3 {
-  font-size: 20px;
+  font-size: 40rpx;
   color: #222;
   font-weight: bold;
-  text-indent: 10px;
+  text-indent: 20rpx;
   position: relative;
-  margin-bottom: 10px;
+  margin-bottom: 20rpx;
 }
 .activity h3::after {
   content: "";
   clear: both;
   display: block;
-  width: 4px;
-  height: 18px;
+  width: 8rpx;
+  height: 36rpx;
   background: linear-gradient(0, #32a4fd, #0086e0);
   position: absolute;
   top: 50%;
   left: 0;
-  margin-top: -7px;
+  margin-top: -14rpx;
 }
 .activity_img li {
-  border-radius: 6px;
+  border-radius: 12rpx;
   overflow: hidden;
 }
 .activity_img1 li {
   width: 100%;
-  height: 82px;
+  height: 164rpx;
 }
 .activity_img2 {
   display: flex;
   justify-content: space-between;
 }
 .activity_img2 li {
-  width: 170px;
-  height: 82px;
-  margin: 3px;
+  width: 340rpx;
+  height: 164rpx;
+  margin: 6rpx;
 }
 .activity_img3::after {
   clear: both;
@@ -356,14 +348,14 @@ export default {
   display: block;
 }
 .activity_img3 li {
-  width: 170px;
-  height: 82px;
+  width: 340rpx;
+  height: 164rpx;
   float: left;
-  margin: 5px;
+  margin: 10rpx;
 }
 .activity_img3 li:nth-child(1) {
-  width: 170px;
-  height: 170px !important;
+  width: 340rpx;
+  height: 340rpx !important;
 }
 .activity_img4 {
   display: flex;
@@ -371,7 +363,7 @@ export default {
 }
 .activity_img4 li {
   width: 25%;
-  height: 106px;
-  margin: 0 3px;
+  height: 212rpx;
+  margin: 0 6rpx;
 }
 </style>
